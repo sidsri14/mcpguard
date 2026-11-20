@@ -4,6 +4,13 @@
 
 This document ties the `mcpguard` OSS tool to a paid, tightly-scoped service. It exists so the OSS work is directly connected to a revenue path rather than being an unpaid portfolio item.
 
+## Live proof
+
+- Tool source: https://github.com/sidsri14/mcpguard (CI green on Node 20/22/24)
+- Landing page: https://sidsri14.github.io/mcpguard/
+- Sample review report (generated from a real scan): https://sidsri14.github.io/mcpguard/sample-report.html
+- Test suite: `npm test` — 11/11 passing, zero runtime dependencies
+
 ## Service
 
 **MCP Configuration Security Review** — a static review of a customer's MCP client/server configuration files using `mcpguard`, plus a human-written remediation report.
