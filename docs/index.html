@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mcpguard — MCP configuration security linter</title>
+<style>
+  body{font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:820px;margin:56px auto;padding:0 20px;color:#1a1a1a}
+  h1{font-size:32px;margin-bottom:6px}.tag{color:#666;font-size:18px;margin-bottom:32px}
+  a{color:#0969da}.btn{display:inline-block;background:#0969da;color:#fff;padding:11px 18px;border-radius:6px;text-decoration:none;margin:6px 8px 6px 0}
+  .btn.alt{background:#fff;color:#0969da;border:1px solid #0969da}
+  ul{line-height:1.9}.note{background:#f6f6f6;border-left:4px solid #888;padding:12px 16px;margin-top:28px;color:#444}
+  code{font-family:ui-monospace,Consolas,monospace;background:#f4f4f4;padding:1px 5px;border-radius:3px}
+</style>
+</head>
+<body>
+<h1>mcpguard</h1>
+<div class="tag">Static security linter for Model Context Protocol (MCP) server configurations.</div>
+
+<p>
+  <a class="btn" href="sample-report.html">View the sample review report</a>
+  <a class="btn alt" href="https://github.com/sidsri14/mcpguard">Source on GitHub</a>
+</p>
+
+<h2>What it catches</h2>
+<ul>
+  <li>Unpinned <code>npx -y …@latest</code> package installs (supply-chain risk)</li>
+  <li>Hardcoded tokens and keys in <code>env</code> and command-line arguments</li>
+  <li>Broad filesystem roots, shell <code>-c</code> wrappers, and disabled sandbox flags</li>
+  <li>Cleartext <code>http://</code> remote MCP endpoints and wildcard tool permissions</li>
+</ul>
+
+<p>Zero runtime dependencies. Human, JSON, and SARIF output. GitHub Action ready.</p>
+
+<div class="note">
+  The sample report is generated from a synthetic fixture by a real <code>mcpguard</code> scan — not invented findings.
+  mcpguard inspects configuration files only; it is not a penetration test or source-code audit.
+  See the <a href="https://github.com/sidsri14/mcpguard#scope-and-non-claims">scope and non-claims</a>.
+</div>
+</body>
+</html>
