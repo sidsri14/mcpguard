@@ -18,8 +18,10 @@ These are static, checkable properties. `mcpguard` checks them.
 
 ## Install
 
+From GitHub (works now, no npm account required):
+
 ```bash
-npm install -g mcpguard
+npm install -g github:sidsri14/mcpguard
 ```
 
 Or run from a checkout with no install step:
@@ -27,6 +29,8 @@ Or run from a checkout with no install step:
 ```bash
 node bin/mcpguard.js scan ~/.claude.json
 ```
+
+> npm registry publishing (`npm install -g mcpguard`) requires a maintainer login and is not set up yet. The GitHub install path above is the supported method today.
 
 ## Usage
 
