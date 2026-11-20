@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Run tests
+        run: npm test
+      - name: Self-scan bad fixture (expect findings)
+        run: |
+          node bin/mcpguard.js scan test/fixtures/bad-config.json --quiet
+          test $? -eq 1
+      - name: Self-scan good fixture (expect clean)
+        run: node bin/mcpguard.js scan test/fixtures/good-config.json --quiet

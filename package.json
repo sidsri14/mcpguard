@@ -1,0 +1,40 @@
+{
+  "name": "mcpguard",
+  "version": "0.1.0",
+  "description": "Static security linter for Model Context Protocol (MCP) server configurations",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "mcpguard": "bin/mcpguard.js"
+  },
+  "scripts": {
+    "scan": "node bin/mcpguard.js scan",
+    "rules": "node bin/mcpguard.js rules",
+    "test": "node --test test/*.test.js",
+    "test:watch": "node --test --watch test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "mcp",
+    "security",
+    "linter",
+    "sarif",
+    "supply-chain",
+    "model-context-protocol",
+    "static-analysis"
+  ],
+  "license": "MIT",
+  "author": "Siddharth Srivastava",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidsri14/mcpguard.git"
+  }
+}

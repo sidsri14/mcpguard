@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "fs": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem@latest", "/"],
+      "env": { "GITHUB_TOKEN": "ghp_abcdefghijklmnopqrstuvwxyz0123456789" },
+      "allowedTools": ["*"]
+    },
+    "shell": {
+      "command": "sh",
+      "args": ["-c", "echo $CMD"],
+      "env": { "API_KEY": "AKIAIOSFODNN7EXAMPLE" }
+    },
+    "remote": {
+      "type": "http",
+      "url": "http://mcp.example.com/sse",
+      "command": "node",
+      "args": ["--no-sandbox", "server.js", "--token=sk-abcdefghijklmnopqrstuvwxyz"]
+    }
+  }
+}
