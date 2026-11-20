@@ -11,7 +11,8 @@
     "scan": "node bin/mcpguard.js scan",
     "rules": "node bin/mcpguard.js rules",
     "test": "node --test test/*.test.js",
-    "test:watch": "node --test --watch test/*.test.js"
+    "test:watch": "node --test --watch test/*.test.js",
+    "sample-report": "node scripts/make-sample-report.mjs"
   },
   "engines": {
     "node": ">=20"

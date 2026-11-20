@@ -1,0 +1,51 @@
+name: 'mcpguard — MCP config security scan'
+description: 'Static security lint for Model Context Protocol server configurations, with SARIF output'
+author: 'Siddharth Srivastava'
+branding:
+  icon: 'shield'
+  color: 'blue'
+
+inputs:
+  path:
+    description: 'File or directory of MCP config JSON to scan'
+    required: false
+    default: '.'
+  format:
+    description: 'Output format: human, json, or sarif'
+    required: false
+    default: 'sarif'
+  fail-on:
+    description: 'Minimum severity that fails the step: high, medium, or low'
+    required: false
+    default: 'high'
+  output:
+    description: 'File path to write the report (use - for stdout)'
+    required: false
+    default: 'mcpguard.sarif'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - name: Run mcpguard
+      shell: bash
+      run: |
+        set +e
+        node "$GITHUB_ACTION_PATH/bin/mcpguard.js" scan "${{ inputs.path }}" \
+          --format "${{ inputs.format }}" --fail-on "${{ inputs.fail-on }}" \
+          > "${{ inputs.output }}"
+        CODE=$?
+        set -e
+        echo "mcpguard_exit=$CODE" >> "$GITHUB_OUTPUT"
+        exit 0
+      id: scan
+    - name: Upload SARIF artifact
+      if: inputs.format == 'sarif'
+      uses: actions/upload-artifact@v4
+      with:
+        name: mcpguard-sarif
+        path: ${{ inputs.output }}
+        if-no-files-found: warn
