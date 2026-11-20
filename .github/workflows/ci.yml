@@ -24,7 +24,14 @@ jobs:
         run: npm test
       - name: Self-scan bad fixture (expect findings)
         run: |
+          set +e
           node bin/mcpguard.js scan test/fixtures/bad-config.json --quiet
-          test $? -eq 1
+          code=$?
+          set -e
+          if [ "$code" -ne 1 ]; then
+            echo "Expected exit code 1 for bad fixture, got $code"
+            exit 1
+          fi
+          echo "Confirmed expected findings exit code 1"
       - name: Self-scan good fixture (expect clean)
         run: node bin/mcpguard.js scan test/fixtures/good-config.json --quiet
